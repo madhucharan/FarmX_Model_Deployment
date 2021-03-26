@@ -7,11 +7,11 @@ import traceback
 from flask_restful import reqparse
 app = Flask(__name__)
 
-@app.route("/", methods=['GET'])
-def hello():
-    return "hey"
+# @app.route("/", methods=['GET'])
+# def hello():
+#     return "hey"
 
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['POST'])
 def predict():
 	lr = joblib.load("XGBoost.pkl")
 	croprec = pickle.load(
@@ -21,7 +21,7 @@ def predict():
 			json = request.get_json()	 
 			model_columns = joblib.load("modelcols.pkl")
 			temp=list(json[0].values())
-			vals=[np.array(temp)]
+			vals=np.array(temp)
 			prediction = croprec.predict(vals)
 			print("here:",prediction)        
 			return jsonify({'prediction': str(prediction[0])})
