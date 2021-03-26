@@ -21,7 +21,7 @@ def predict():
 			json = request.get_json()	 
 			model_columns = joblib.load("modelcols.pkl")
 			temp=list(json[0].values())
-			vals=np.array(temp)
+			vals=[np.array(temp)]
 			prediction = croprec.predict(vals)
 			print("here:",prediction)        
 			return jsonify({'prediction': str(prediction[0])})
