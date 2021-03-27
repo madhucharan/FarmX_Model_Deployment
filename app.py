@@ -22,7 +22,7 @@ def predict():
 			model_columns = joblib.load("modelcols.pkl")
 			temp=list(json[0].values())
 			vals=np.array(temp)
-			prediction = lr.predict(vals)
+			prediction = lr.predict(temp)
 			print("here:",prediction)        
 			return jsonify({'prediction': str(prediction[0])})
 
