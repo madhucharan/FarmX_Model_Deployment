@@ -7,11 +7,11 @@ import traceback
 from flask_restful import reqparse
 app = Flask(__name__)
 
-# @app.route("/", methods=['GET'])
-# def hello():
-#     return "hey"
+@app.route("/", methods=['GET'])
+def hello():
+    return "hey"
 
-@app.route('/', methods=['POST'])
+@app.route('/predict', methods=['POST','GET'])
 def predict():
 	lr = joblib.load("XGBoost.pkl")
 	croprec = pickle.load(
