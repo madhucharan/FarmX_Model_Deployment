@@ -2,6 +2,9 @@
 from flask import Flask, jsonify, request
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 import joblib
 import traceback
 from flask_restful import reqparse
@@ -38,7 +41,7 @@ def predict_fertilizer():
 			model_columns = joblib.load("Models/fertilizerrec_columns.pkl")
 			temp=list(json[0].values())
 			vals=np.array(temp)
-			prediction = lr.predict(temp)
+			prediction = lr.predict(vals)
 			print("here:",prediction)        
 			return jsonify({'prediction': str(prediction[0])})
 
