@@ -12,7 +12,7 @@ def hello():
     return "hey"
 
 @app.route('/croprec', methods=['POST','GET'])
-def predict():
+def predict_crop():
 	lr = joblib.load("Models/crop_rec.pkl")
 	if lr:
 		try:
@@ -30,7 +30,7 @@ def predict():
 		return ('No model here to use')
     
 @app.route('/fertrec', methods=['POST','GET'])
-def predict():
+def predict_fertilizer():
 	lr = joblib.load("Models/fertilizerrecommendation.pkl")
 	if lr:
 		try:
