@@ -11,15 +11,13 @@ app = Flask(__name__)
 def hello():
     return "hey"
 
-@app.route('/predict', methods=['POST','GET'])
+@app.route('/croprec', methods=['POST','GET'])
 def predict():
-	lr = joblib.load("crop_rec.pkl")
-# 	croprec = pickle.load(
-#     open("RandomForest.pkl", 'rb'))
+	lr = joblib.load("Models/crop_rec.pkl")
 	if lr:
 		try:
 			json = request.get_json()	 
-			model_columns = joblib.load("modelcols.pkl")
+			model_columns = joblib.load("Models/croprecommenation_model_cols.pkl")
 			temp=list(json[0].values())
 			vals=np.array(temp)
 			prediction = lr.predict(temp)
