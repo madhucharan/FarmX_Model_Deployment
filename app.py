@@ -13,16 +13,16 @@ def hello():
 
 @app.route('/predict', methods=['POST','GET'])
 def predict():
-	lr = joblib.load("XGBoost.pkl")
-	croprec = pickle.load(
-    open("RandomForest.pkl", 'rb'))
+	lr = joblib.load("croprec_model.pkl")
+# 	croprec = pickle.load(
+#     open("RandomForest.pkl", 'rb'))
 	if lr:
 		try:
 			json = request.get_json()	 
 			model_columns = joblib.load("modelcols.pkl")
 			temp=list(json[0].values())
 			vals=np.array(temp)
-			prediction = croprec.predict(vals)
+			prediction = lr.predict(vals)
 			print("here:",prediction)        
 			return jsonify({'prediction': str(prediction[0])})
 
