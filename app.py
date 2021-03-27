@@ -31,7 +31,7 @@ def predict_crop():
     
 @app.route('/fertrec', methods=['POST','GET'])
 def predict_fertilizer():
-	lr = joblib.load("Models/fertilizer_recommendation.pkl")
+	lr = joblib.load("Models/fertilizer_recommendation_model.pkl")
 	if lr:
 		try:
 			json = request.get_json()	 
