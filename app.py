@@ -13,7 +13,7 @@ def hello():
 
 @app.route('/predict', methods=['POST','GET'])
 def predict():
-	lr = joblib.load("croprec_model.pkl")
+	lr = joblib.load("crop_rec_model.pkl")
 # 	croprec = pickle.load(
 #     open("RandomForest.pkl", 'rb'))
 	if lr:
