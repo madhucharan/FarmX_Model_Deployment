@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+from utils.cropsuggestion import crop_suggestion_dict
 import joblib
 import traceback
 from flask_restful import reqparse
@@ -49,6 +50,26 @@ def predict_fertilizer():
 			return jsonify({'trace': traceback.format_exc()})
 	else:
 		return ('No model here to use')
+	
+@app.route('/cropsuggest', methods=['POST','GET'])
+def predict_fertilizer():
+	try:
+		json = request.get_json()	 
+		state=list(json[0].values())
+		cropsuggest =[]
+
+		for crop in crop_suggestion_dict.keys():
+		  varieties = list(crop_suggestion_dict[crop].keys())
+		  for variety in varieties:
+		    states = crop_suggestion_dict[crop][variety]
+		    if state in states:
+		      cropsuggest.append([crop,variety])
+
+		cropsuggest = dict(cropsuggest)      
+		return jsonify({'suggestion': cropsuggest)})
+
+	except:        
+		return jsonify({'trace': traceback.format_exc()})
 
 if __name__ == '__main__':
     app.run(debug=True)
