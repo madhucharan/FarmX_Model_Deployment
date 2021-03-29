@@ -52,7 +52,7 @@ def predict_fertilizer():
 		return ('No model here to use')
 	
 @app.route('/cropsuggest', methods=['POST','GET'])
-def predict_fertilizer():
+def suggest_crop():
 	try:
 		json = request.get_json()	 
 		state=list(json[0].values())
