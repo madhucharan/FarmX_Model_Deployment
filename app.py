@@ -67,7 +67,7 @@ def suggest_crop():
 		      cropsuggest.append([crop,variety])
 
 		cropsuggest = dict(cropsuggest)
-		return jsonify({'suggestion': cropsuggest)})
+		return jsonify({'suggestion': cropsuggest})
 
 	except:        
 		return jsonify({'trace': traceback.format_exc()})
