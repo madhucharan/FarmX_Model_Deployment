@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, request
 import pandas as pd
 import numpy as np
+import json
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -65,7 +66,7 @@ def suggest_crop():
 		    if state in states:
 		      cropsuggest.append([crop,variety])
 
-		cropsuggest = dict(cropsuggest)      
+		cropsuggest = json.dumps(dict(cropsuggest))     
 		return jsonify({'suggestion': cropsuggest)})
 
 	except:        
