@@ -52,25 +52,25 @@ def predict_fertilizer():
 	else:
 		return ('No model here to use')
 	
-# @app.route('/cropsuggest', methods=['POST','GET'])
-# def suggest_crop():
-# 	try:
-# 		json = request.get_json()	 
-# 		state= json[0].values()
-# 		cropsuggest =[]
+@app.route('/cropsuggest', methods=['POST','GET'])
+def suggest_crop():
+	try:
+		json = request.get_json()	 
+		state= json[0]["state"]
+		cropsuggest =[]
 
-# 		for crop in crop_suggestion_dict.keys():
-# 		  varieties = list(crop_suggestion_dict[crop].keys())
-# 		  for variety in varieties:
-# 		    states = crop_suggestion_dict[crop][variety]
-# 		    if state in states:
-# 		      cropsuggest.append([crop,variety])
+		for crop in crop_suggestion_dict.keys():
+		  varieties = list(crop_suggestion_dict[crop].keys())
+		  for variety in varieties:
+		    states = crop_suggestion_dict[crop][variety]
+		    if state in states:
+		      cropsuggest.append([crop,variety])
 
-# 		cropsuggest = json.dumps(dict(cropsuggest))     
-# 		return jsonify({'suggestion': cropsuggest)})
+		cropsuggest = json.dumps(dict(cropsuggest))     
+		return jsonify({'suggestion': cropsuggest)})
 
-# 	except:        
-# 		return jsonify({'trace': traceback.format_exc()})
+	except:        
+		return jsonify({'trace': traceback.format_exc()})
 
 if __name__ == '__main__':
     app.run(debug=True)
