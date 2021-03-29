@@ -56,7 +56,7 @@ def predict_fertilizer():
 def suggest_crop():
 	try:
 		json = request.get_json()	 
-		state= json[0]["state"]
+		state= json[0]["State"]
 		cropsuggest =[]
 
 		for crop in crop_suggestion_dict.keys():
