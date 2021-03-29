@@ -66,7 +66,7 @@ def suggest_crop():
 		    if state in states:
 		      cropsuggest.append([crop,variety])
 
-		cropsuggest = json.dumps(dict(cropsuggest))     
+		cropsuggest = dict(cropsuggest)
 		return jsonify({'suggestion': cropsuggest)})
 
 	except:        
